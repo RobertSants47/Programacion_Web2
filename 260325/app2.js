@@ -16,11 +16,30 @@ function mostrarMenu(){
 }
 
 function agregarTarea(){
-    console.log("En proceso");
+
+    let nombre = prompt("Introduce el nombre de la tarea:");
+    if(nombre){
+        let tarea ={
+            nombre : nombre,
+            completado: false
+        };
+        tareas.push(tarea);
+        alert ("Tarea agregada exitosamente");
+    }else{
+        console.log("El nombre de la tarea no puede estar vacío");
+    }
 }
 
 function verTareas(){
-    console.log("En proceso");
+    if(tareas.length === 0){
+        alert ("No hay tareas en lista");
+    }else{
+        let mensaje = "Lista de tareas: \n";
+        tareas.forEach((tarea,index)=>{
+            mensaje += `$(index+1) . $(tarea.nombre) [ $(tarea.completada ? "Completada" : "Pendiente")]\n`;
+        });
+        alert(mensaje);
+    }
 }
 
 function marcarTareaCompletada(){
@@ -30,7 +49,29 @@ function marcarTareaCompletada(){
 //Funcion principal para manejar el programa
 
 function iniciarPrograma(){
-
+    let opcion = mostrarMenu();
+    let condicion = true;
+    while(condicion){
+        switch (opcion){
+            case 1:
+                agregarTarea();
+                break;
+            case 2:
+                verTareas();
+                break;
+            case 3:
+                marcarTareaCompletada();
+                break;
+            case 4:
+                alert("Saliendo del programa");
+                condicion = false;
+                break;
+            default:
+                alert("Saliendo del programa");
+        }
+    }
+    alert("Saliendo del programa");
+    
 }
 
 

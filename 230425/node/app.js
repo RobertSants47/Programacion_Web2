@@ -10,7 +10,7 @@ const server = ServidorNodeImportado.createServer((req,res)=>{
     res.writeHead(200,{'Content-Type':'text/plain'});
     
     // Enviamos la respuesta
-    res.end('Hola Mundo');
+    res.end('Hola Mundo desde Node');
 });
 
 //Escuchar el puerto 

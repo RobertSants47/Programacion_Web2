@@ -1,13 +1,30 @@
 const express = require('express');
 const router = express.Router();
-const path= require('path');
+const path = require('path');
 
-//definimos las rutas y los manejadores
+//defincion de las rutas y menejadores
 
-
+// ruta 1
 router.get("/",(req,res)=>{
-    //res.send("Hola mundo"); 
-    res.sendFile(path.join(__dirname+"/../index.html"));
+     res.sendFile(path.join(__dirname +"/../index.html"));
 });
 
-module.exports = router;
+
+// //ruta 2
+// router.get("/",(req,res)=>{
+//     res.sendFile(path.join(__dirname +"/../index2.html"));
+// });
+
+
+// //ruta 3
+//  router.get("/",(req,res)=>{
+//      res.sendFile(path.join(__dirname +"/../index3.html"));
+// });
+
+
+// //ruta 4
+// router.get("/",(req,res)=>{
+//     res.sendFile(path.join(__dirname +"/../index4.html"));
+// });
+
+module.exports=router;

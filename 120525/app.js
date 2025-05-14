@@ -33,8 +33,8 @@ db.connect(err => {
 
 // inicio de servidor
 
-const port = 3306;
-app.listen(port, ()=>{
+const port = 3006;
+app.listen(port, ()=> {
     console.log(`http://127.0.0.1:${port}`);
 });
 
@@ -62,7 +62,7 @@ app.get('/', (req,res)=>{
 // modulo para agregar el usuario
 
 app.post('/add',(req,res)=>{
-    const {name,email} = req.body;
+    const {name, email} = req.body;
     /*
         Nombre: roberto
         Correo: roberto@aragon.unam.mx
@@ -75,6 +75,42 @@ app.post('/add',(req,res)=>{
         if(err){
             console.error('Error al agregar usuario: ',err);
             res.send('Error');
+        }else{
+            res.redirect('/');
+        }
+    });
+});
+app.post('/edit/:id', (req, res) =>{
+
+});
+
+//editar usuario
+
+app.get('/edit/:id',(req,res) => {
+    const {id} = req.params;
+    const buscarUsuarioID = 'SELECT * FROM users WHERE id = ?';
+    
+    db.query(buscarUsuarioID, [id],(err,results)=>{
+        if(err){
+            console.error('Error en la DB',err);
+        }else{
+            res.render('edit', {user: results[0]});
+        }
+    });
+
+});
+
+
+// update
+
+app.post('/update/:id', (req,res)=>{
+    const {id} =req.params;
+    const {name,email} = req.body;
+
+    const query = "UPDATE users SET name = ?, email = ? WHERE id = ?";
+    db.query(query,[name,email,id],(err)=>{
+        if(err){
+            console.error('Error',err);
         }else{
             res.redirect('/');
         }

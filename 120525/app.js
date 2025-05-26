@@ -1,8 +1,11 @@
 const express = require ('express');
 const mysql = require('mysql2');
 const bodyParser = require('body-parser');
-
 const app = express();
+const path = require('path');
+
+//Configuración de la carpeta views
+app.use(express.static(path.join(__dirname, 'public')));
 
 // manejo de peticiones de http por medio de requiest
 app.use(bodyParser.urlencoded({extended:false}));
@@ -33,7 +36,7 @@ db.connect(err => {
 
 // inicio de servidor
 
-const port = 3006;
+const port = 3007;
 app.listen(port, ()=> {
     console.log(`http://127.0.0.1:${port}`);
 });
@@ -46,14 +49,15 @@ app.get('/', (req,res)=>{
 
     // trabajamos con la conexión
 
-    db.query(consultaDB,(err,result)=>{
+    db.query(consultaDB,(err, results)=>{
         if(err){
             // no se encontrór el usuario o se tiene un error
             console.error('Error al recuperar usuario',err);
             // mostrar la información al usuario 
             res.send('Error no se recuperan los datos de la DB');
         }else{
-            res.render('index',{users: result});
+            //Se muestra la lista de los usuarios
+            res.render('index',{users: results});
         }
     });
 });

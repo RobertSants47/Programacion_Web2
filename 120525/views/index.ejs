@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio</title>
+    <link rel="stylesheet" href="/estilos.css">
 </head>
 <body>
     <table>
@@ -26,15 +27,21 @@
         </tr>
        <% }); %>
     </table>
+    <br>
     <!--Agregar la lista-->
     
 
     <form action="/add" method="post">
-        <label for="name">Nombre</label>
-            <input type="text" name="name" id="name" maxlength="45" required placeholder="Ingresa tu nombre: ">
-        <br><br>
-        <label for="email">Correo: </label>
-            <input type="email" name="email" id="email" maxlength="45" required placeholder="Ingresa tu correo: ">
+        <h2>Registro</h2>
+        <div class="coolinput">
+            <label for="name" class="text">Nombre</label>
+            <input type="text" name="name" id="name" maxlength="45" required placeholder="Ingresa tu nombre: " class="input">
+        
+        <br>
+            <label for="email" class="text">Correo: </label>
+            <input type="email" name="email" id="email" maxlength="45" required placeholder="Ingresa tu correo: " class="input">
+        </div>
+        
         <br><br>
         <button type="submit">Registro</button>
     </form>

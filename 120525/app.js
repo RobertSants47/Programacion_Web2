@@ -123,13 +123,14 @@ app.post('/update/:id', (req,res)=>{
 
 //eliminar usuario 
 app.get('/delete/:id', (req, res)=>{
-    const {id} = req.params;
+    const {id}=req.params;
     const eliminarUsuarioId = 'DELETE FROM users WHERE id = ?';
-    db.query(eliminarUsuarioId), [id], (err)=>{
+    db.query(eliminarUsuarioId, [id], (err)=>{
         if(err){
-            console.error('Error al eliminar en la DB', err);
+            console.error('Error, no se pudo eliminar el dato', err);
             res.send("Error en la DB")
         }else{
             res.redirect('/');
-        }};
+        }
+    });
 });
